@@ -19,11 +19,9 @@ public class MyBackgroundTask extends SwingWorker<Void, Void> {
         while (true) {
 
             String updatedTitle = Utils.getAlphaNumericString(10);
-            List<String> updatedLines = IntStream.range(5, 20).mapToObj(Utils::getAlphaNumericString).collect(Collectors.toList());
+            List<String> updatedLines = IntStream.range(1, 20).mapToObj(i -> Utils.getAlphaNumericString(20)).collect(Collectors.toList());
 
-            SwingUtilities.invokeLater(() -> {
-                ui.updateLabels(threadId, updatedTitle, updatedLines);
-            });
+            SwingUtilities.invokeLater(() -> ui.updateLabels(threadId, updatedTitle, updatedLines));
 
             Thread.sleep(2500);
         }
